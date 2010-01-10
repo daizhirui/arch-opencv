@@ -2,7 +2,7 @@
 
 pkgname=opencv
 pkgver=2.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Intel(R) Open Source Computer Vision Library"
 arch=('i686' 'x86_64')
 license=('custom')
@@ -15,6 +15,7 @@ md5sums=('ed27520514baacc5edad7b06ad24130e')
 
 build() {
   cd ${srcdir}
+
   mkdir build
   cd build
   cmake ../OpenCV-${pkgver} \
