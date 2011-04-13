@@ -4,7 +4,7 @@
 pkgname=opencv
 _realname=OpenCV
 pkgver=2.2.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Open Source Computer Vision Library"
 arch=('i686' 'x86_64')
 license=('BSD')
@@ -17,9 +17,13 @@ optdepends=('eigen'
             'python2-numpy')
 options=('!libtool')
 source=(http://downloads.sourceforge.net/opencvlibrary/$_realname-$pkgver.tar.bz2
-        ptrcvcapture.patch)
+        ptrcvcapture.patch
+        gcc46.patch
+        nov4l1.patch)
 md5sums=('122c9ac793a46854ef2819fedbbd6b1b'
-         '461a8b1b0f2264521e13d9ae051d13be')
+         '461a8b1b0f2264521e13d9ae051d13be'
+         'b5fb8d6786578ae7bf272615279e8865'
+         '0164bdbd54ee28b1f6cba20fcfd53812')
 
 build() {
   cd "$srcdir/$_realname-$pkgver"
@@ -39,6 +43,14 @@ build() {
   # fix linking against highgui
   # see https://bugs.archlinux.org/task/22841
   patch -Np0 -i "$srcdir/ptrcvcapture.patch"
+
+  # gcc 4.6 compatibility
+  # see https://bugs.archlinux.org/task/23741
+  patch -Np3 -i "$srcdir/gcc46.patch"
+
+  # distro kernel no longer has v4l1
+  # see https://code.ros.org/trac/opencv/ticket/862
+  patch -Np1 -i "$srcdir/nov4l1.patch"
 
   cmake . -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX=/usr \
