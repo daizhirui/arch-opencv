@@ -82,7 +82,7 @@ package_opencv() {
 
 package_opencv-docs() {
   pkgdesc+=" (documentation)"
-  arch=('any')
+  #arch=('any')
   depends=()
   optdepends=()
   options=('docs')
@@ -95,7 +95,7 @@ package_opencv-docs() {
 
 package_opencv-samples() {
   pkgdesc+=" (samples)"
-  arch=('any')
+  #arch=('any')
   depends=()
   optdepends=()
   options=()
