@@ -61,6 +61,8 @@ build() {
 }
 
 package_opencv() {
+  install=$pkgname.install
+
   cd "$srcdir/$_realname-$pkgver"
 
   make DESTDIR="$pkgdir" install
