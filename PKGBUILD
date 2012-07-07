@@ -95,7 +95,7 @@ package_opencv-docs() {
 
   # install license file
   install -Dm644 "$srcdir/$_realname-$pkgver/doc/license.txt" \
-    "$pkgdir/usr/share/licenses/$_realname/LICENSE"
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
 package_opencv-samples() {
@@ -111,7 +111,7 @@ package_opencv-samples() {
 
   # install license file
   install -Dm644 "$srcdir/$_realname-$pkgver/doc/license.txt" \
-    "$pkgdir/usr/share/licenses/$_realname/LICENSE"
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
 # vim:set ts=2 sw=2 et:
