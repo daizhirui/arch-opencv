@@ -4,7 +4,7 @@
 pkgbase=opencv
 pkgname=('opencv' 'opencv-samples')
 pkgver=2.4.10
-pkgrel=2
+pkgrel=3
 pkgdesc="Open Source Computer Vision Library"
 arch=('i686' 'x86_64')
 license=('BSD')
