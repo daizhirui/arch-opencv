@@ -51,6 +51,7 @@ build() {
     -DLAPACK_CBLAS_H="/usr/include/cblas.h" \
     -DLAPACK_LAPACKE_H="/usr/include/lapacke.h" \
     ../$pkgname-$pkgver
+  make
 }
 
 package_opencv() {
