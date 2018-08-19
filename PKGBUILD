@@ -4,7 +4,7 @@
 pkgbase=opencv
 pkgname=(opencv opencv-samples)
 pkgver=3.4.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Open Source Computer Vision Library"
 arch=(x86_64)
 license=(BSD)
@@ -62,13 +62,9 @@ package_opencv() {
 
   cd "$pkgdir"/usr/share
 
-  # separate samples package; also be -R friendly
-  if [[ -d OpenCV/samples ]]; then
-    mv OpenCV/samples "$srcdir/$pkgname-samples"
-    mv OpenCV $pkgname # otherwise folder naming is inconsistent
-  elif [[ ! -d OpenCV ]]; then
-    warning "Directory naming issue; samples package may not be built!"
-  fi
+  # separate samples package
+  mv OpenCV/samples "$srcdir/$pkgname-samples"
+  mv OpenCV $pkgname # otherwise folder naming is inconsistent
 }
 
 package_opencv-samples() {
