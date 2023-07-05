@@ -22,16 +22,13 @@ optdepends=('opencv-samples: samples'
             'java-runtime: Java interface')
 source=(https://github.com/opencv/opencv/archive/$pkgver/$pkgname-$pkgver.tar.gz
         https://github.com/opencv/opencv_contrib/archive/$pkgver/opencv_contrib-$pkgver.tar.gz
-        protobuf-23.patch
         vtk9.patch)
 sha256sums=('cbf47ecc336d2bff36b0dcd7d6c179a9bb59e805136af6b9670ca944aef889bd'
             'b4aef0f25a22edcd7305df830fa926ca304ea9db65de6ccd02f6cfa5f3357dbb'
-            '572f7b774678e2fc46b524ce72d4b0ddf175b2a576c6dcfd013d16165ba39863'
             'f35a2d4ea0d6212c7798659e59eda2cb0b5bc858360f7ce9c696c77d3029668e')
 
 prepare() {
   patch -d $pkgname-$pkgver -p1 < vtk9.patch # Don't require all vtk optdepends
-  patch -d $pkgname-$pkgver -p1 < protobuf-23.patch # Fix build with protobuf 23
 }
 
 build() {
@@ -63,7 +60,9 @@ build() {
          -DOPENCV_ENABLE_NONFREE=ON \
          -DOPENCV_JNI_INSTALL_PATH=lib \
          -DOPENCV_GENERATE_SETUPVARS=OFF \
-         -DEIGEN_INCLUDE_PATH=/usr/include/eigen3"
+         -DEIGEN_INCLUDE_PATH=/usr/include/eigen3 \
+         -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON \
+         -Dprotobuf_MODULE_COMPATIBLE=ON"
  
   cmake -B build -S $pkgname-$pkgver $_opts \
     -DBUILD_WITH_DEBUG_INFO=ON
