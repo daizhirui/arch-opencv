@@ -3,16 +3,56 @@
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 
 pkgbase=opencv
-pkgname=(opencv opencv-samples python-opencv opencv-cuda)
+pkgname=(opencv
+         opencv-samples
+         python-opencv
+         opencv-cuda)
 pkgver=4.8.0
-pkgrel=5
+pkgrel=6
 pkgdesc='Open Source Computer Vision Library'
 arch=(x86_64)
 license=(BSD)
 url='https://opencv.org/'
-depends=(tbb openexr gst-plugins-base libdc1394 cblas lapack libgphoto2 openjpeg2 ffmpeg protobuf)
-makedepends=(cmake python-numpy python-setuptools mesa eigen hdf5 lapacke qt6-5compat vtk glew ant java-environment
-             pugixml openmpi cudnn fmt nlohmann-json)
+depends=(abseil-cpp
+         cblas
+         ffmpeg
+         freetype2
+         gcc-libs
+         glib2
+         glibc
+         gst-plugins-base
+         gst-plugins-base-libs
+         gstreamer
+         harfbuzz
+         lapack
+         libdc1394
+         libglvnd
+         libjpeg-turbo
+         libpng
+         libtiff
+         libwebp
+         openexr
+         openjpeg2
+         protobuf
+         tbb
+         zlib)
+makedepends=(ant
+             cmake
+             cudnn
+             eigen
+             fmt
+             glew
+             hdf5
+             java-environment
+             lapacke
+             mesa
+             nlohmann-json
+             openmpi
+             pugixml
+             python-numpy
+             python-setuptools
+             qt6-5compat
+             vtk)
 optdepends=('opencv-samples: samples'
             'vtk: for the viz module'
             'glew: for the viz module'
@@ -114,7 +154,16 @@ package_opencv-samples() {
 
 package_python-opencv() {
   pkgdesc='Python bindings for OpenCV'
-  depends=(python-numpy opencv vtk glew qt6-base hdf5 jsoncpp openmpi pugixml fmt)
+  depends=(fmt
+           glew
+           hdf5
+           jsoncpp
+           opencv
+           openmpi
+           pugixml
+           python-numpy
+           qt6-base
+           vtk)
   unset optdepends
 
   DESTDIR="$pkgdir" cmake --install build/modules/python3
